@@ -5,6 +5,7 @@ import {
   useEffect,
   useState
 } from 'react'
+import SplashScreen from 'react-native-splash-screen'
 
 import { IUser } from '@/shared/types/user.interface'
 
@@ -17,21 +18,9 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<TypeUserState>({} as IUser)
 
   useEffect(() => {
-    let mounted = true
-
-    const checkAccessToken = async () => {
-      try {
-      } catch {
-      } finally {
-        // setTimeout(() => {
-        //   SplashScreen.hide()
-        // }, 3000)
-      }
-    }
-
-    return () => {
-      mounted = false
-    }
+    setTimeout(() => {
+      SplashScreen.hide()
+    }, 3000)
   }, [])
 
   return (
