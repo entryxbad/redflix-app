@@ -5,7 +5,8 @@ import {
   useEffect,
   useState
 } from 'react'
-import { View } from 'react-native'
+
+import { IUser } from '@/shared/types/user.interface'
 
 import { IContext } from './auth-provider.interface'
 import { TypeUserState } from './auth-provider.interface'
@@ -13,7 +14,7 @@ import { TypeUserState } from './auth-provider.interface'
 export const AuthContext = createContext({} as IContext)
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<TypeUserState>(null)
+  const [user, setUser] = useState<TypeUserState>({} as IUser)
 
   useEffect(() => {
     let mounted = true
@@ -22,6 +23,9 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
       try {
       } catch {
       } finally {
+        // setTimeout(() => {
+        //   SplashScreen.hide()
+        // }, 3000)
       }
     }
 
@@ -30,7 +34,11 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }, [])
 
-  return <View>{children}</View>
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export default AuthProvider
