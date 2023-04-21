@@ -7,15 +7,13 @@ import {
 } from 'react'
 import SplashScreen from 'react-native-splash-screen'
 
-import { IUser } from '@/shared/types/user.interface'
-
 import { IContext } from './auth-provider.interface'
 import { TypeUserState } from './auth-provider.interface'
 
 export const AuthContext = createContext({} as IContext)
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<TypeUserState>({} as IUser)
+  const [user, setUser] = useState<TypeUserState>(null)
 
   useEffect(() => {
     setTimeout(() => {
